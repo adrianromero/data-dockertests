@@ -1,0 +1,14 @@
+version: "3"
+services:
+  database:
+    build: ./postgresql
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mysecret
+    ports:
+      - "6432:5432"
+  rabbitmq:
+    build: ./rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"

@@ -1,0 +1,93 @@
+{
+    "users": [
+        {
+            "name": "guest",
+            "password_hash": "YhXgK79L2qYsuPCUEmBRY3np5B3TsfM9u6u+wzDvA0iPMeGh",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "administrator"
+        },
+        {
+            "name": "admin",
+            "password_hash": "Cjzn69wBTUnVBnHB5E4oHzU5d1G1H8wE8KHbnx5SJ91pUZZf",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "administrator"
+        }          
+    ],
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "guest",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "admin",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }   
+    ],
+    "parameters": [],
+    "policies": [],
+    "exchanges": [
+        {
+            "name": "exdatalink",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "exquerylink",
+            "vhost": "/",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}            
+        }
+    ],
+    "queues": [
+        {
+            "name": "mqdatalink",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "mqquerylink",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+            "source": "exdatalink",
+            "vhost": "/",
+            "destination": "mqdatalink",
+            "destination_type": "queue",
+            "routing_key": "*",
+            "arguments": {}
+        },
+        {
+            "source": "exquerylink",
+            "vhost": "/",
+            "destination": "mqquerylink",
+            "destination_type": "queue",
+            "routing_key": "*",
+            "arguments": {}
+        }        
+    ]
+}
