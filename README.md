@@ -1,4 +1,4 @@
-# Data Tests with containers
+# Data Tests with Docker containers
 
 ## Access PostgreSQL container command line
 
