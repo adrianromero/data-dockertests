@@ -1,6 +1,6 @@
 version: "3"
 services:
-  database:
+  postgresqldb:
     build: ./postgresql
     environment:
       - POSTGRES_USER=myuser
@@ -12,9 +12,17 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-  databasemysql:
+  mysqldb:
     build: ./mysql
     environment:
       - MYSQL_ROOT_PASSWORD=myrootsecret
     ports:
       - "6306:3306"
+  mongodb:
+    build: ./mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=myrootuser
+      - MONGO_INITDB_ROOT_PASSWORD=myrootsecret
+      - MONGO_INITDB_DATABASE=myuser 
+    ports:
+      - "27017:27017"
